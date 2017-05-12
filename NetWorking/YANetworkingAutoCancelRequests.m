@@ -12,6 +12,9 @@
 @end
 @implementation YANetworkingAutoCancelRequests
 -(void)dealloc{
+    [self.requestEngines enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, YABaseDataEngine * _Nonnull obj, BOOL * _Nonnull stop) {
+        [obj cancelRequest];
+    }];
     [self.requestEngines removeAllObjects];
     self.requestEngines = nil;
 }
